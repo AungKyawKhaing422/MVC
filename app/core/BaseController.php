@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mr.Zero
- * Date: 3/1/2019
- * Time: 11:23 PM
- */
 
 namespace App\Core;
 

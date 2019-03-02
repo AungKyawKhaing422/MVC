@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mr.Zero
- * Date: 3/1/2019
- * Time: 11:54 PM
- */
 
 namespace App\Controllers;
 
@@ -13,8 +7,16 @@ use App\Core\BaseController;
 
 class User extends BaseController
 {
-    public function login(){
-        self::view("login");
+    public function login($params)
+    {
+        $user=new \App\Models\User();
+        $users=$user->all();
+        $obj=[
+            "users"=>$users,
+            "params"=>$params
+        ];
+        $obj=json_decode(json_encode($obj));
+        self::view("login", $obj);
     }
 
 }

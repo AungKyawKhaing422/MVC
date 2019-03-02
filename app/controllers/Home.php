@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mr.Zero
- * Date: 3/1/2019
- * Time: 10:10 AM
- */
 
 namespace App\Controllers;
 
@@ -12,11 +6,8 @@ use App\Core\BaseController;
 
 class Home extends BaseController
 {
-    public function welcome()
+    public function welcome($params)
     {
-        echo self::view();
+        self::view("index",$params);
     }
-    public function show(){
-    }
-
 }
