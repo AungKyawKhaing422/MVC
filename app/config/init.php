@@ -7,7 +7,7 @@ require_once "../vendor/autoload.php";
 require_once "helper.php";
 
 
-define("APP_URL", realpath(__DIR__ . "/../../"));
+define("APP_ROOT", realpath(__DIR__ . "/../"));
 
 define("SITE_URL", 'http://localhost/MVC/public/');
 

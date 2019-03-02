@@ -12,4 +12,4 @@ $user = new User();
 //$user->delete("id",10);
 //$user->update(["title"=>"Update Title3","content"=>"HaHa"],"id",9);
 
-echo \App\Classes\CSRFToken::_token();
+//echo \App\Classes\CSRFToken::_token();
