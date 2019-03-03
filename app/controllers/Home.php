@@ -8,6 +8,6 @@ class Home extends BaseController
 {
     public function welcome($params)
     {
-        self::view("layout/top");
+        self::view("login");
     }
 }
