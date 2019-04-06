@@ -84,18 +84,38 @@ class DBWrapper
         $this->stmt->execute();
     }
 
-    public function update($values, $realKey, $realVal)
+    /*
+        public function update($values, $realKey, $realVal)
+        {
+            $pholder = "";
+            foreach ($values as $key => $value) {
+                $pholder .= $key . "=:" . $key . ",";
+            }
+            $pholder = rtrim($pholder, ",");
+            $this->stmt = $this->db->prepare("UPDATE " . $this->table . " SET " . $pholder . " WHERE " . $realKey . "=:" . $realKey);
+            foreach ($values as $k => $v) {
+                $this->stmt->bindValue($k, $v);
+            }
+            $this->stmt->bindParam(":" . $realKey, $realVal);
+            return $this->stmt->execute();
+        }
+
+    */
+
+    public function update($yek, $lav, $values)
     {
-        $pholder = "";
+        $changes = "";
         foreach ($values as $key => $value) {
-            $pholder .= $key . "=:" . $key . ",";
+            $changes .= " " . $key . "=:" . $key . ",";
         }
-        $pholder = rtrim($pholder, ",");
-        $this->stmt = $this->db->prepare("UPDATE " . $this->table . " SET " . $pholder . " WHERE " . $realKey . "=:" . $realKey);
+        $changes = rtrim($changes, ",");
+        $query = "UPDATE $this->table SET $changes WHERE $yek=:$yek";
+        $this->stmt = $this->db->prepare($query);
+
         foreach ($values as $k => $v) {
-            $this->stmt->bindParam(":" . $k, $v);
+            $this->stmt->bindValue($k, $v);
         }
-        $this->stmt->bindParam(":" . $realKey, $realVal);
+        $this->stmt->bindParam(":" . $yek, $lav);
         return $this->stmt->execute();
     }
 

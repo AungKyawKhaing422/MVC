@@ -27,7 +27,7 @@ class Database
         }
     }
 
-    public function getCon()
+    public static function getCon()
     {
         if (self::$con == null) {
             new Database();

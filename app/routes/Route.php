@@ -9,10 +9,12 @@
 namespace App\Routes;
 
 
+use App\Controllers\User;
+
 class Route
 {
-    private $currentclass = "Home";
-    private $currentmethod = "welcome";
+    private $currentclass = "User";
+    private $currentmethod = "login";
     private $params = [];
 
     public function __construct()
@@ -23,16 +25,21 @@ class Route
     public function loadUrl()
     {
         $url = isset($_GET['url']) ? rtrim($_GET['url'], '/') : '';
-        $urlary = explode('/', $url);
-        if (!empty($urlary[0])) {
-            $this->currentclass = $urlary[0];
-            unset($urlary[0]);
+        $urlAry = explode('/', $url);
+        if (!empty($urlAry[0])) {
+            if (file_exists(APP_ROOT . "/controllers/" . ucfirst($urlAry[0]) . ".php")) {
+                $this->currentclass = $urlAry[0];
+                unset($urlAry[0]);
+            }
         }
-        if (!empty($urlary[1])) {
-            $this->currentmethod = $urlary[1];
-            unset($urlary[1]);
+        $class = new User();
+        if (!empty($urlAry[1])) {
+            if (method_exists($class, $urlAry[1])) {
+                $this->currentmethod = $urlAry[1];
+                unset($urlAry[1]);
+            }
         }
-        $params = array_values($urlary);
+        $params = array_values($urlAry);
         call_user_func(["App\Controllers\\" . $this->currentclass, $this->currentmethod], $params);
     }
 }

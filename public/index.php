@@ -10,6 +10,6 @@ $user = new User();
 //beautify($user->findAll("id",1));
 //beautify($user->post(2));
 //$user->delete("id",10);
-//$user->update(["title"=>"Update Title3","content"=>"HaHa"],"id",9);
-
+$ret = $user->update("content", "I did it", ["title" => "dd", "content" => "Successfully Updated"]);
+var_dump($ret);
 //echo \App\Classes\CSRFToken::_token();
